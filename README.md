@@ -6,40 +6,10 @@ The project also includes an AI chatbox powered by the Google Gemini API. The as
 
 ## Demo Link
 
-🔗 **Live demo:** https://your-project.vercel.app
+🔗 **Live demo:** [Link](https://front-end-fundamentals-mauve.vercel.app/)
 
-## Demo Screenshots
-
-The screenshots below are placeholders. After capturing your own screenshots, place them in `assets/screenshots/` and replace the TODO blocks with the Markdown image lines.
-
-Suggested folder structure:
-
-```text
-assets/
-└── screenshots/
-    ├── overview.png
-    ├── flex-grid.png
-    ├── jquery-showcase.png
-    ├── box-model.png
-    ├── responsive.png
-    ├── dom-semantic.png
-    ├── css-selectors.png
-    ├── css-animations.png
-    ├── js-fundamentals.png
-    └── ai-chat.png
-```
-
-### Overview
-
-> TODO: Insert a screenshot of the main interface here.
-
-```md
-![Overview](./assets/screenshots/overview.png)
-```
-
+## My project screen capture
 ### Flexbox & Grid Playground
-
-> TODO: Insert a screenshot of the Flexbox/Grid tab while changing layout controls.
 
 ```md
 ![Flexbox and Grid](./assets/screenshots/flex-grid.png)
@@ -47,15 +17,11 @@ assets/
 
 ### jQuery Showcase
 
-> TODO: Insert a screenshot of selector matching, jQuery effects, or event delegation.
-
 ```md
 ![jQuery Showcase](./assets/screenshots/jquery-showcase.png)
 ```
 
 ### CSS Box Model
-
-> TODO: Insert a screenshot showing margin, border, padding, and content.
 
 ```md
 ![CSS Box Model](./assets/screenshots/box-model.png)
@@ -63,23 +29,18 @@ assets/
 
 ### Responsive Preview
 
-> TODO: Insert a screenshot of the mobile/tablet/desktop preview.
-
 ```md
 ![Responsive Preview](./assets/screenshots/responsive.png)
 ```
 
 ### Native DOM & Semantic HTML
 
-> TODO: Insert a screenshot of the native DOM or semantic HTML tab.
-
 ```md
 ![DOM and Semantic HTML](./assets/screenshots/dom-semantic.png)
+![DOM and Semantic HTML](./assets/screenshots/dom-semantic2.png)
 ```
 
 ### CSS Selectors & Specificity
-
-> TODO: Insert a screenshot of the CSS Selectors module with specificity calculator.
 
 ```md
 ![CSS Selectors](./assets/screenshots/css-selectors.png)
@@ -87,23 +48,17 @@ assets/
 
 ### CSS Transitions & Animations
 
-> TODO: Insert a screenshot of the animation module with transition controls.
-
 ```md
 ![CSS Animations](./assets/screenshots/css-animations.png)
 ```
 
 ### JavaScript Fundamentals
 
-> TODO: Insert a screenshot of the JS Fundamentals module with runnable examples.
-
 ```md
 ![JS Fundamentals](./assets/screenshots/js-fundamentals.png)
 ```
 
 ### AI Chatbox
-
-> TODO: Insert a screenshot of the AI chatbox, API key input, and API key guide.
 
 ```md
 ![AI Chatbox](./assets/screenshots/ai-chat.png)
@@ -129,9 +84,6 @@ FE project/
 ├── jQuery.js    # All JavaScript/jQuery behavior and interactivity
 └── README.md    # Project documentation
 ```
-
-The project was originally written in `ex.html`, then split into three main files:
-
 - `index.html`: page structure and content
 - `style.css`: UI styling, theme, layout, and responsive behavior
 - `jQuery.js`: interactivity, demos, AI chatbox, and API handling
@@ -1538,16 +1490,6 @@ Before pushing, make sure you do not commit any real API keys. This project does
 - The AI chatbox requires internet access and a valid Gemini API key
 - There are no automated tests yet because this is a small static demo
 - Screenshot placeholders still need to be replaced with real images
-
-## Future Improvements
-
-- Add a backend/proxy to protect the Gemini API key
-- Add a local fallback if the jQuery CDN fails
-- Split `jQuery.js` into smaller modules
-- Add real screenshots or GIFs to the README
-- Deploy the project to Vercel, GitHub Pages, or Netlify
-- Add a short demo video
-- Add small tests for the AI response parsing/error handling functions
 
 ## References
 

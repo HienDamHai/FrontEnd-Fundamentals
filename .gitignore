@@ -1,0 +1,16 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local environment files
+.env
+.env.*
+
+# Dependencies/build outputs if the project is extended later
+node_modules/
+dist/
+build/
+.vercel/

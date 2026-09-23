@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Front-End Fundamentals Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="shell">
+        <aside class="rail">
+            <div class="brand">Front-End Fundamentals Lab<span>html · css · js · jquery</span></div>
+
+            <ul class="nav" id="nav">
+                <li><button data-target="m-flex" class="is-active"><span class="idx">01</span>Flexbox &amp;
+                        Grid</button></li>
+                <li><button data-target="m-jq"><span class="idx">02</span>jQuery Showcase</button></li>
+                <li><button data-target="m-box"><span class="idx">03</span>CSS Box Model</button></li>
+                <li><button data-target="m-resp"><span class="idx">04</span>Responsive</button></li>
+                <li><button data-target="m-dom"><span class="idx">05</span>Vanilla DOM</button></li>
+                <li><button data-target="m-html"><span class="idx">06</span>Semantic HTML</button></li>
+                <li><button data-target="m-sel"><span class="idx">07</span>CSS Selectors</button></li>
+                <li><button data-target="m-anim"><span class="idx">08</span>CSS Animations</button></li>
+                <li><button data-target="m-jsbasic"><span class="idx">09</span>JS Fundamentals</button></li>
+            </ul>
+
+            <div class="rail-foot">
+                <button class="mini-btn" id="themeBtn">Switch to light theme</button>
+            </div>
+        </aside>
+
+        <main>
+
+
+            <section class="module is-on" id="m-flex">
+                <div class="mod-head">
+                    <h2>Flexbox &amp; Grid Playground</h2>
+                    <p>Adjust properties on the left panel and watch the preview change instantly. The matching CSS is printed below.</p>
+                </div>
+                <div class="split">
+                    <div class="panel">
+                        <h3>Properties</h3>
+                        <div class="ctrl">
+                            <label for="fx-mode">Layout mode</label>
+                            <select id="fx-mode">
+                                <option value="flex">flex</option>
+                                <option value="grid">grid</option>
+                            </select>
+                        </div>
+                        <div data-when="flex">
+                            <div class="ctrl"><label for="fx-dir">flex-direction</label>
+                                <select id="fx-dir">
+                                    <option>row</option>
+                                    <option>row-reverse</option>
+                                    <option>column</option>
+                                    <option>column-reverse</option>
+                                </select>
+                            </div>
+                            <div class="ctrl"><label for="fx-wrap">flex-wrap</label>
+                                <select id="fx-wrap">
+                                    <option>nowrap</option>
+                                    <option>wrap</option>
+                                    <option>wrap-reverse</option>
+                                </select>
+                            </div>
+                            <div class="ctrl"><label for="fx-jc">justify-content</label>
+                                <select id="fx-jc">
+                                    <option>flex-start</option>
+                                    <option>center</option>
+                                    <option>flex-end</option>
+                                    <option>space-between</option>
+                                    <option>space-around</option>
+                                    <option>space-evenly</option>
+                                </select>
+                            </div>
+                            <div class="ctrl"><label for="fx-ai">align-items</label>
+                                <select id="fx-ai">
+                                    <option>stretch</option>
+                                    <option>flex-start</option>
+                                    <option>center</option>
+                                    <option>flex-end</option>
+                                    <option>baseline</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div data-when="grid" style="display:none">
+                            <div class="ctrl"><label for="gr-cols">grid-template-columns</label>
+                                <select id="gr-cols">
+                                    <option>repeat(2, 1fr)</option>
+                                    <option>repeat(3, 1fr)</option>
+                                    <option>repeat(4, 1fr)</option>
+                                    <option>1fr 2fr</option>
+                                    <option>120px 1fr 120px</option>
+                                    <option>repeat(auto-fit, minmax(90px, 1fr))</option>
+                                </select>
+                            </div>
+                            <div class="ctrl"><label for="gr-ai">align-items</label>
+                                <select id="gr-ai">
+                                    <option>stretch</option>
+                                    <option>start</option>
+                                    <option>center</option>
+                                    <option>end</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="ctrl"><label for="fx-gap">gap <span class="val" id="fx-gap-v">10px</span></label>
+                            <input type="range" id="fx-gap" min="0" max="40" value="10">
+                        </div>
+                        <div class="ctrl"><label for="fx-count">Number of items <span class="val" id="fx-count-v">5</span></label>
+                            <input type="range" id="fx-count" min="2" max="10" value="5">
+                        </div>
+                    </div>
+
+                    <div class="stage">
+                        <div class="demo-box" id="fx-stage"></div>
+                        <pre class="out" id="fx-css"></pre>
+                    </div>
+                </div>
+
+                <div class="concepts">
+                    <h3>Key Concepts</h3>
+                    <div class="card-grid">
+                        <div class="info-card">
+                            <h4>Main Axis vs Cross Axis</h4>
+                            <p>In Flexbox, the <strong>main axis</strong> follows <code>flex-direction</code> (default: horizontal). The <strong>cross axis</strong> runs perpendicular to it. <code>justify-content</code> aligns items along the main axis; <code>align-items</code> aligns along the cross axis.</p>
+                            <pre class="out">.container {
+  display: flex;
+  flex-direction: row;     /* main axis → horizontal */
+  justify-content: center; /* center along main axis */
+  align-items: center;     /* center along cross axis */
+}</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Container vs Item Properties</h4>
+                            <p>Flex/Grid properties are split into two groups:</p>
+                            <ul>
+                                <li><strong>Container:</strong> <code>display</code>, <code>flex-direction</code>, <code>justify-content</code>, <code>align-items</code>, <code>gap</code>, <code>flex-wrap</code></li>
+                                <li><strong>Item:</strong> <code>flex-grow</code>, <code>flex-shrink</code>, <code>flex-basis</code>, <code>align-self</code>, <code>order</code></li>
+                            </ul>
+                            <p>Container properties go on the parent; item properties go on children.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>Grid Template &amp; the fr Unit</h4>
+                            <p>CSS Grid uses <code>grid-template-columns</code> and <code>grid-template-rows</code> to define the grid structure. The <code>fr</code> unit distributes free space proportionally.</p>
+                            <pre class="out">/* 3 equal columns */
+grid-template-columns: repeat(3, 1fr);
+
+/* sidebar + main + sidebar */
+grid-template-columns: 200px 1fr 200px;
+
+/* auto-fit responsive grid */
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Flex vs Grid — When to Use Which</h4>
+                            <p><strong>Flexbox</strong> is best for one-dimensional layouts (a single row or column). <strong>Grid</strong> is best for two-dimensional layouts (rows and columns together).</p>
+                            <table class="compare-table">
+                                <tr><th>Flexbox</th><th>Grid</th></tr>
+                                <tr><td>Navigation bars</td><td>Page layouts</td></tr>
+                                <tr><td>Button groups</td><td>Card grids</td></tr>
+                                <tr><td>Centering content</td><td>Dashboard layouts</td></tr>
+                                <tr><td>One-direction flow</td><td>Two-direction control</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="module" id="m-jq">
+                <div class="mod-head">
+                    <h2>jQuery Showcase</h2>
+                    <p>Selectors, effects, and event handling — the three most common jQuery tasks in real projects.</p>
+                </div>
+
+                <div class="split" style="margin-bottom:26px">
+                    <div class="panel">
+                        <h3>Selector &amp; DOM Traversal</h3>
+                        <div class="ctrl">
+                            <label for="jq-sel">Enter a selector and click Find</label>
+                            <input type="text" id="jq-sel" value=".card.active">
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn btn-solid" id="jq-run">Find</button>
+                            <button class="btn" id="jq-clear">Clear highlights</button>
+                        </div>
+                        <p class="note" id="jq-count">Try: <code>li</code>, <code>.card</code>, <code>#box-2</code>,
+                            <code>li:first</code>, <code>[data-role="admin"]</code></p>
+                    </div>
+                    <div class="stage">
+                        <div class="tree" id="jq-tree">
+                            <span>&lt;section id="box-1" class="card"&gt;</span>
+                            <div>
+                                <span>&lt;ul&gt;</span>
+                                <div><span>&lt;li data-role="admin"&gt;Admin&lt;/li&gt;</span></div>
+                                <div><span>&lt;li&gt;Member&lt;/li&gt;</span></div>
+                                <span>&lt;/ul&gt;</span>
+                            </div>
+                            <span>&lt;/section&gt;</span>
+                            <span>&lt;section id="box-2" class="card active"&gt;</span>
+                            <div><span>&lt;p&gt;Content&lt;/p&gt;</span></div>
+                            <span>&lt;/section&gt;</span>
+                        </div>
+                        <div id="jq-real" style="display:none">
+                            <section id="box-1" class="card">
+                                <ul>
+                                    <li data-role="admin">A</li>
+                                    <li>B</li>
+                                </ul>
+                            </section>
+                            <section id="box-2" class="card active">
+                                <p>C</p>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="split">
+                    <div class="panel">
+                        <h3>Effects &amp; Events</h3>
+                        <div class="btn-row">
+                            <button class="btn" data-fx="fadeToggle">fadeToggle()</button>
+                            <button class="btn" data-fx="slideToggle">slideToggle()</button>
+                            <button class="btn" data-fx="animate">animate()</button>
+                            <button class="btn" data-fx="chain">Chaining</button>
+                        </div>
+                        <p class="note">The buttons below are added after page load, but their clicks are still captured via
+                            <code>event delegation</code> — the listener is attached to the parent, not each child.</p>
+                        <div class="btn-row" style="margin-top:14px">
+                            <button class="btn" id="jq-add">Add a new button</button>
+                        </div>
+                    </div>
+                    <div class="stage">
+                        <div id="fx-target" class="chip" style="height:110px;margin-bottom:16px">Demo block</div>
+                        <div id="jq-dyn" class="btn-row"></div>
+                        <pre class="out" id="jq-log">Event log</pre>
+                    </div>
+                </div>
+
+                <div class="concepts">
+                    <h3>Key Concepts</h3>
+                    <div class="card-grid">
+                        <div class="info-card">
+                            <h4>The $() Function</h4>
+                            <p>The <code>$()</code> function is the core of jQuery. It accepts a CSS selector string and returns a jQuery object wrapping all matched DOM elements. You can then chain methods on it.</p>
+                            <pre class="out">// Select by ID
+$("#box-2")
+
+// Select by class
+$(".card")
+
+// Attribute selector
+$('[data-role="admin"]')
+
+// Pseudo-selector
+$("li:first")</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Effects &amp; Animation Queue</h4>
+                            <p>jQuery effects like <code>fadeIn()</code>, <code>slideUp()</code>, and <code>animate()</code> are placed in a queue. Each runs after the previous finishes, enabling smooth sequential animations.</p>
+                            <pre class="out">// Chaining: runs in sequence
+$("#el")
+  .fadeOut(200)
+  .fadeIn(200)
+  .animate({ height: 160 }, 300)
+  .animate({ height: 110 }, 300);</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Event Delegation</h4>
+                            <p>Instead of binding events to each element individually, attach one listener to a parent. The event bubbles up and is filtered by a child selector. This works even for elements added dynamically after page load.</p>
+                            <pre class="out">// Delegate: parent listens, filters ".dyn"
+$("#jq-dyn").on("click", ".dyn", function() {
+  console.log($(this).text());
+});
+
+// Without delegation (breaks for dynamic elements)
+$(".dyn").on("click", handler);</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>jQuery vs Vanilla JS</h4>
+                            <table class="compare-table">
+                                <tr><th>jQuery</th><th>Vanilla JS</th></tr>
+                                <tr><td>$(".card")</td><td>document.querySelectorAll(".card")</td></tr>
+                                <tr><td>$(el).addClass("x")</td><td>el.classList.add("x")</td></tr>
+                                <tr><td>$(el).css("color","red")</td><td>el.style.color = "red"</td></tr>
+                                <tr><td>$(el).text("Hi")</td><td>el.textContent = "Hi"</td></tr>
+                                <tr><td>$(el).on("click", fn)</td><td>el.addEventListener("click", fn)</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="module" id="m-box">
+                <div class="mod-head">
+                    <h2>CSS Box Model</h2>
+                    <p>Four layers surround every element's content: margin, border, padding, and the content area itself.</p>
+                </div>
+                <div class="split">
+                    <div class="panel">
+                        <h3>Dimensions</h3>
+                        <div class="ctrl"><label>margin <span class="val" id="bm-m-v">16px</span></label><input
+                                type="range" id="bm-m" min="0" max="50" value="16"></div>
+                        <div class="ctrl"><label>border <span class="val" id="bm-b-v">6px</span></label><input
+                                type="range" id="bm-b" min="0" max="24" value="6"></div>
+                        <div class="ctrl"><label>padding <span class="val" id="bm-p-v">20px</span></label><input
+                                type="range" id="bm-p" min="0" max="60" value="20"></div>
+                        <div class="ctrl"><label>width <span class="val" id="bm-w-v">160px</span></label><input
+                                type="range" id="bm-w" min="60" max="280" value="160"></div>
+                        <div class="ctrl"><label for="bm-sizing">box-sizing</label>
+                            <select id="bm-sizing">
+                                <option>content-box</option>
+                                <option>border-box</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="stage">
+                        <div class="bm">
+                            <div class="bm-margin">
+                                <div class="bm-border">
+                                    <div class="bm-padding">
+                                        <div class="bm-content" id="bm-content">content</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <pre class="out" id="bm-css"></pre>
+                    </div>
+                </div>
+
+                <div class="concepts">
+                    <h3>Key Concepts</h3>
+                    <div class="card-grid">
+                        <div class="info-card">
+                            <h4>The Four Layers</h4>
+                            <p>Every HTML element is a rectangular box with four concentric areas:</p>
+                            <ul>
+                                <li><strong>Content</strong> — the text, image, or child elements</li>
+                                <li><strong>Padding</strong> — transparent space between content and border</li>
+                                <li><strong>Border</strong> — a visible edge around the padding</li>
+                                <li><strong>Margin</strong> — transparent space outside the border, pushing other elements away</li>
+                            </ul>
+                        </div>
+                        <div class="info-card">
+                            <h4>content-box vs border-box</h4>
+                            <p>With <code>content-box</code> (browser default), the <code>width</code> property only measures the content area. Padding and border are added on top, making the element wider than expected.</p>
+                            <p>With <code>border-box</code>, the <code>width</code> includes content + padding + border. The content area shrinks to fit. This is more intuitive for layout.</p>
+                            <pre class="out">/* Recommended: apply to all elements */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* content-box: total = width + 2*padding + 2*border
+   border-box:  total = width (padding+border inside) */</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Margin Collapse</h4>
+                            <p>When two vertical margins touch (e.g. bottom margin of one block meets top margin of the next), they <strong>collapse</strong> into a single margin equal to the larger value. This only happens vertically, not horizontally.</p>
+                            <pre class="out">/* Element A: margin-bottom: 20px
+   Element B: margin-top: 30px
+   Actual gap between them: 30px (not 50px) */</pre>
+                            <div class="tip-box"><strong>Tip:</strong> Margin collapse does not happen inside Flex or Grid containers.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="module" id="m-resp">
+                <div class="mod-head">
+                    <h2>Responsive Design</h2>
+                    <p>Same layout, three screen sizes. Click a button to see the grid adapt its column count to the breakpoint.</p>
+                </div>
+                <div class="btn-row">
+                    <button class="btn" data-vp="mobile">Mobile · 380px</button>
+                    <button class="btn" data-vp="tablet">Tablet · 700px</button>
+                    <button class="btn btn-solid" data-vp="desktop">Desktop · full</button>
+                </div>
+                <div class="stage">
+                    <div class="vp" data-w="desktop" id="vp">
+                        <div class="vp-grid">
+                            <div class="chip">1</div>
+                            <div class="chip">2</div>
+                            <div class="chip">3</div>
+                            <div class="chip">4</div>
+                        </div>
+                    </div>
+                    <pre class="out" id="vp-css"></pre>
+                </div>
+
+                <div class="concepts">
+                    <h3>Key Concepts</h3>
+                    <div class="card-grid">
+                        <div class="info-card">
+                            <h4>Viewport Meta Tag</h4>
+                            <p>The <code>&lt;meta name="viewport"&gt;</code> tag tells mobile browsers how to scale the page. Without it, phones render the page at desktop width then shrink it down.</p>
+                            <pre class="out">&lt;meta name="viewport"
+      content="width=device-width, initial-scale=1"&gt;</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Media Queries</h4>
+                            <p>Media queries let you apply CSS rules only when certain conditions are met (typically screen width). They are the foundation of responsive design.</p>
+                            <pre class="out">/* Mobile-first: start small, add complexity */
+.grid { grid-template-columns: 1fr; }
+
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(4, 1fr); }
+}</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Mobile-First vs Desktop-First</h4>
+                            <p><strong>Mobile-first</strong> uses <code>min-width</code> breakpoints: base styles are for small screens, and media queries add complexity for larger screens.</p>
+                            <p><strong>Desktop-first</strong> uses <code>max-width</code>: base styles are for large screens, and media queries simplify for smaller screens.</p>
+                            <div class="tip-box"><strong>Tip:</strong> Mobile-first is recommended because it forces you to prioritize content and performance for constrained devices.</div>
+                        </div>
+                        <div class="info-card">
+                            <h4>CSS Units for Responsive Layout</h4>
+                            <table class="compare-table">
+                                <tr><th>Unit</th><th>Relative to</th><th>Use case</th></tr>
+                                <tr><td>px</td><td>Fixed pixel</td><td>Borders, shadows</td></tr>
+                                <tr><td>%</td><td>Parent element</td><td>Widths, margins</td></tr>
+                                <tr><td>em</td><td>Parent font-size</td><td>Spacing, padding</td></tr>
+                                <tr><td>rem</td><td>Root font-size</td><td>Typography, layout</td></tr>
+                                <tr><td>vw / vh</td><td>Viewport width/height</td><td>Full-screen sections</td></tr>
+                                <tr><td>fr</td><td>Free space in grid</td><td>Grid columns</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="module" id="m-dom">
+                <div class="mod-head">
+                    <h2>DOM Manipulation with Vanilla JavaScript</h2>
+                    <p>The same operations as the jQuery module, but written with the browser's native API to see the differences.</p>
+                </div>
+                <div class="split">
+                    <div class="panel">
+                        <h3>Actions</h3>
+                        <div class="btn-row">
+                            <button class="btn" id="dm-create">createElement</button>
+                            <button class="btn" id="dm-toggle">classList.toggle</button>
+                            <button class="btn" id="dm-style">Inline style</button>
+                            <button class="btn" id="dm-reset">Reset</button>
+                        </div>
+                        <p class="note">jQuery <code>$("#a").addClass("b")</code> is equivalent to
+                            <code>document.getElementById("a").classList.add("b")</code>.</p>
+                    </div>
+                    <div class="stage">
+                        <div id="dm-stage" class="demo-box"
+                            style="min-height:150px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start"></div>
+                        <pre class="out" id="dm-code">// Matching code will appear here</pre>
+                    </div>
+                </div>
+
+                <div class="concepts">
+                    <h3>Key Concepts</h3>
+                    <div class="card-grid">
+                        <div class="info-card">
+                            <h4>What Is the DOM?</h4>
+                            <p>The <strong>Document Object Model</strong> is a tree-like representation of an HTML document. The browser parses HTML and builds this tree. JavaScript can read and modify every node in the tree, which is how dynamic web pages work.</p>
+                            <pre class="out">document
+└── html
+    ├── head
+    │   ├── title
+    │   └── meta
+    └── body
+        ├── div#app
+        └── script</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Selecting Elements</h4>
+                            <p>JavaScript provides several methods to find elements in the DOM:</p>
+                            <pre class="out">// Single element
+document.getElementById("app")
+document.querySelector(".card")
+
+// Multiple elements (NodeList)
+document.querySelectorAll(".card")
+document.getElementsByClassName("card")
+document.getElementsByTagName("div")</pre>
+                            <div class="tip-box"><strong>Tip:</strong> <code>querySelector</code> and <code>querySelectorAll</code> accept any CSS selector — they are the most flexible.</div>
+                        </div>
+                        <div class="info-card">
+                            <h4>Creating &amp; Modifying Elements</h4>
+                            <pre class="out">// Create
+var el = document.createElement("div");
+el.className = "chip";
+el.textContent = "Hello";
+
+// Insert
+parent.appendChild(el);
+parent.insertBefore(el, reference);
+parent.removeChild(el);
+
+// Modify
+el.classList.add("active");
+el.classList.remove("active");
+el.classList.toggle("active");
+el.setAttribute("data-id", "5");
+el.style.color = "red";
+el.innerHTML = "&lt;strong&gt;Bold&lt;/strong&gt;";</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Event Handling</h4>
+                            <p>Use <code>addEventListener</code> to respond to user interactions. The method takes an event type and a callback function.</p>
+                            <pre class="out">element.addEventListener("click", function(event) {
+  // event.target = the element that was clicked
+  // event.preventDefault() = stop default behavior
+  // event.stopPropagation() = stop bubbling
+  console.log("Clicked!", event.target);
+});
+
+// Common event types:
+// click, dblclick, mouseenter, mouseleave
+// keydown, keyup, keypress
+// input, change, submit, focus, blur
+// load, DOMContentLoaded, scroll, resize</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="module" id="m-html">
+                <div class="mod-head">
+                    <h2>Semantic HTML</h2>
+                    <p>Toggle each tag to see the document structure that screen readers and search engines see.</p>
+                </div>
+                <div class="split">
+                    <div class="panel">
+                        <h3>Tags on this page</h3>
+                        <div id="sem-list"></div>
+                    </div>
+                    <div class="stage">
+                        <pre class="out" id="sem-out" style="margin-top:0"></pre>
+                        <p class="note" style="margin-top:14px">Using <code>&lt;div&gt;</code> for everything still displays
+                            correctly, but all structural information above is lost.</p>
+                    </div>
+                </div>
+
+                <div class="concepts">
+                    <h3>Key Concepts</h3>
+                    <div class="card-grid">
+                        <div class="info-card">
+                            <h4>Why Semantic HTML Matters</h4>
+                            <p>Semantic elements describe the <strong>meaning</strong> of content, not just its appearance. They help browsers, search engines, and assistive technologies understand the page structure.</p>
+                            <pre class="out">&lt;!-- Non-semantic: what is this? --&gt;
+&lt;div class="header"&gt;...&lt;/div&gt;
+
+&lt;!-- Semantic: clearly a page header --&gt;
+&lt;header&gt;...&lt;/header&gt;</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Common Semantic Elements</h4>
+                            <table class="compare-table">
+                                <tr><th>Element</th><th>Purpose</th></tr>
+                                <tr><td>&lt;header&gt;</td><td>Introductory content for a page or section</td></tr>
+                                <tr><td>&lt;nav&gt;</td><td>Group of navigation links</td></tr>
+                                <tr><td>&lt;main&gt;</td><td>Primary content of the page (one per page)</td></tr>
+                                <tr><td>&lt;article&gt;</td><td>Self-contained content (blog post, news item)</td></tr>
+                                <tr><td>&lt;section&gt;</td><td>Thematic grouping of content</td></tr>
+                                <tr><td>&lt;aside&gt;</td><td>Tangentially related content (sidebar)</td></tr>
+                                <tr><td>&lt;footer&gt;</td><td>Footer content for a page or section</td></tr>
+                                <tr><td>&lt;figure&gt;</td><td>Self-contained media with optional caption</td></tr>
+                                <tr><td>&lt;time&gt;</td><td>Date/time with machine-readable value</td></tr>
+                                <tr><td>&lt;mark&gt;</td><td>Highlighted/marked text</td></tr>
+                            </table>
+                        </div>
+                        <div class="info-card">
+                            <h4>SEO &amp; Accessibility Benefits</h4>
+                            <ul>
+                                <li><strong>SEO:</strong> Search engines use semantic tags to understand content hierarchy and importance, improving page ranking.</li>
+                                <li><strong>Screen readers:</strong> Assistive technologies use semantic tags to create a navigable outline, letting users jump between sections.</li>
+                                <li><strong>Maintainability:</strong> Developers can scan the code and immediately understand the page structure.</li>
+                            </ul>
+                            <div class="tip-box"><strong>Tip:</strong> Use ARIA attributes (<code>aria-label</code>, <code>aria-expanded</code>, <code>aria-controls</code>) to enhance accessibility when semantic HTML alone is not enough.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="module" id="m-sel">
+                <div class="mod-head">
+                    <h2>CSS Selectors &amp; Specificity</h2>
+                    <p>CSS selectors target HTML elements for styling. Specificity determines which rule wins when multiple selectors match the same element.</p>
+                </div>
+                <div class="split">
+                    <div class="panel">
+                        <h3>Test a Selector</h3>
+                        <div class="ctrl">
+                            <label for="sel-input">Enter a CSS selector</label>
+                            <input type="text" id="sel-input" value=".card">
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn btn-solid" id="sel-test">Calculate Specificity</button>
+                        </div>
+                        <p class="note">Specificity: <span class="specificity-badge" id="sel-score"><span>0</span><span class="sep">–</span><span>0</span><span class="sep">–</span><span>0</span></span></p>
+                        <h3 style="margin-top:18px">Try these examples</h3>
+                        <div class="sel-examples">
+                            <button class="btn" data-sel="div">div</button>
+                            <button class="btn" data-sel=".card">.card</button>
+                            <button class="btn" data-sel="#main">#main</button>
+                            <button class="btn" data-sel="div.card">div.card</button>
+                            <button class="btn" data-sel="#main .card.active">#main .card.active</button>
+                            <button class="btn" data-sel="ul > li:first-child">ul > li:first-child</button>
+                            <button class="btn" data-sel="input[type='text']">input[type="text"]</button>
+                            <button class="btn" data-sel="a:hover">a:hover</button>
+                        </div>
+                    </div>
+                    <div class="stage">
+                        <pre class="out" id="sel-out" style="margin-top:0">/* Specificity (A–B–C):
+   A = number of ID selectors
+   B = number of class selectors,
+       attribute selectors,
+       and pseudo-classes
+   C = number of type selectors
+       and pseudo-elements
+
+   Higher specificity wins.
+   Equal specificity → last rule wins.
+
+   !important overrides everything.
+   Inline styles beat all selectors. */</pre>
+                        <pre class="out" id="sel-explain"></pre>
+                    </div>
+                </div>
+
+                <div class="concepts">
+                    <h3>Key Concepts</h3>
+                    <div class="card-grid">
+                        <div class="info-card">
+                            <h4>Basic Selectors</h4>
+                            <pre class="out">/* Type selector */
+p { color: blue; }
+
+/* Class selector */
+.card { border: 1px solid; }
+
+/* ID selector */
+#main { max-width: 1200px; }
+
+/* Universal selector */
+* { box-sizing: border-box; }
+
+/* Attribute selector */
+input[type="text"] { border: 1px solid; }
+a[href^="https"] { color: green; }</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Combinators</h4>
+                            <pre class="out">/* Descendant (space) — any nested level */
+.card p { margin: 0; }
+
+/* Child (>) — direct children only */
+ul > li { list-style: none; }
+
+/* Adjacent sibling (+) — immediately after */
+h2 + p { margin-top: 0; }
+
+/* General sibling (~) — any sibling after */
+h2 ~ p { color: gray; }</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Pseudo-classes</h4>
+                            <pre class="out">/* User interaction */
+a:hover { color: red; }
+input:focus { outline: 2px solid blue; }
+
+/* Structural */
+li:first-child { font-weight: bold; }
+li:last-child { border: none; }
+li:nth-child(2n) { background: #f5f5f5; }
+
+/* State */
+input:checked { accent-color: green; }
+input:disabled { opacity: 0.5; }
+:not(.active) { display: none; }</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Specificity Rules</h4>
+                            <table class="compare-table">
+                                <tr><th>Selector</th><th>Specificity</th></tr>
+                                <tr><td>*</td><td>0–0–0</td></tr>
+                                <tr><td>div</td><td>0–0–1</td></tr>
+                                <tr><td>.card</td><td>0–1–0</td></tr>
+                                <tr><td>#main</td><td>1–0–0</td></tr>
+                                <tr><td>div.card</td><td>0–1–1</td></tr>
+                                <tr><td>#main .card</td><td>1–1–0</td></tr>
+                                <tr><td>style="..."</td><td>1–0–0–0 (inline)</td></tr>
+                                <tr><td>!important</td><td>Overrides all</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="module" id="m-anim">
+                <div class="mod-head">
+                    <h2>CSS Transitions &amp; Animations</h2>
+                    <p>CSS can animate property changes with transitions (A → B) and keyframe animations (multi-step sequences).</p>
+                </div>
+                <div class="split">
+                    <div class="panel">
+                        <h3>Transition Controls</h3>
+                        <div class="ctrl"><label for="anim-prop">transition-property</label>
+                            <select id="anim-prop">
+                                <option>all</option>
+                                <option>transform</option>
+                                <option>opacity</option>
+                                <option>background</option>
+                                <option>border-radius</option>
+                            </select>
+                        </div>
+                        <div class="ctrl"><label for="anim-dur">duration <span class="val" id="anim-dur-v">0.4s</span></label>
+                            <input type="range" id="anim-dur" min="1" max="30" value="4">
+                        </div>
+                        <div class="ctrl"><label for="anim-tf">timing-function</label>
+                            <select id="anim-tf">
+                                <option>ease</option>
+                                <option>linear</option>
+                                <option>ease-in</option>
+                                <option>ease-out</option>
+                                <option>ease-in-out</option>
+                            </select>
+                        </div>
+                        <h3 style="margin-top:18px">Transform</h3>
+                        <div class="ctrl"><label for="anim-rotate">rotate <span class="val" id="anim-rotate-v">0deg</span></label>
+                            <input type="range" id="anim-rotate" min="0" max="360" value="0">
+                        </div>
+                        <div class="ctrl"><label for="anim-scale">scale <span class="val" id="anim-scale-v">1</span></label>
+                            <input type="range" id="anim-scale" min="5" max="25" value="10">
+                        </div>
+                        <div class="ctrl"><label for="anim-tx">translateX <span class="val" id="anim-tx-v">0px</span></label>
+                            <input type="range" id="anim-tx" min="-100" max="100" value="0">
+                        </div>
+                        <h3 style="margin-top:18px">Keyframe Animation</h3>
+                        <div class="btn-row">
+                            <button class="btn" data-kf="none">None</button>
+                            <button class="btn" data-kf="pulse">Pulse</button>
+                            <button class="btn" data-kf="spin">Spin</button>
+                            <button class="btn" data-kf="bounce">Bounce</button>
+                        </div>
+                    </div>
+                    <div class="stage">
+                        <div class="anim-stage">
+                            <div class="anim-box" id="anim-target">Box</div>
+                        </div>
+                        <pre class="out" id="anim-css"></pre>
+                    </div>
+                </div>
+
+                <div class="concepts">
+                    <h3>Key Concepts</h3>
+                    <div class="card-grid">
+                        <div class="info-card">
+                            <h4>CSS Transitions</h4>
+                            <p>Transitions smoothly animate a property from one value to another. They need a trigger (e.g. <code>:hover</code>, class change, or JS) to start.</p>
+                            <pre class="out">.box {
+  transition: all 0.3s ease;
+  /* shorthand: property duration timing delay */
+}
+.box:hover {
+  transform: scale(1.1);
+  background: #e0a458;
+}</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>CSS Transforms</h4>
+                            <p>Transforms change an element's shape, size, and position without affecting the document flow (other elements don't move).</p>
+                            <pre class="out">transform: rotate(45deg);
+transform: scale(1.5);
+transform: translateX(50px);
+transform: skewX(10deg);
+
+/* Combine multiple transforms */
+transform: rotate(45deg) scale(1.2) translateX(20px);</pre>
+                            <div class="tip-box"><strong>Performance:</strong> <code>transform</code> and <code>opacity</code> are GPU-accelerated — they are the cheapest properties to animate.</div>
+                        </div>
+                        <div class="info-card">
+                            <h4>@keyframes Animations</h4>
+                            <p>Keyframe animations run automatically and can define multiple steps. Unlike transitions, they don't need a trigger.</p>
+                            <pre class="out">@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.15); }
+}
+
+.element {
+  animation: pulse 1s ease infinite;
+  /* name | duration | timing | iteration */
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="module" id="m-jsbasic">
+                <div class="mod-head">
+                    <h2>JavaScript Fundamentals</h2>
+                    <p>Core JavaScript concepts: variables, data types, functions, array methods, and more. Click "Run" to see each example in action.</p>
+                </div>
+
+                <div class="js-cards" id="js-cards">
+                    <div class="js-example">
+                        <h4>var vs let vs const</h4>
+                        <pre class="out">var x = 1;    // function-scoped, can redeclare
+let y = 2;    // block-scoped, cannot redeclare
+const z = 3;  // block-scoped, cannot reassign
+
+if (true) {
+  var a = "visible outside";
+  let b = "only inside this block";
+}
+// a is accessible here, b is not</pre>
+                        <button class="btn" data-jsrun="vars">Run</button>
+                        <div class="js-output" id="js-out-vars"></div>
+                    </div>
+
+                    <div class="js-example">
+                        <h4>Data Types</h4>
+                        <pre class="out">typeof "hello"     // "string"
+typeof 42          // "number"
+typeof true        // "boolean"
+typeof undefined   // "undefined"
+typeof null        // "object" (JS quirk)
+typeof []          // "object"
+typeof {}          // "object"
+Array.isArray([])  // true</pre>
+                        <button class="btn" data-jsrun="types">Run</button>
+                        <div class="js-output" id="js-out-types"></div>
+                    </div>
+
+                    <div class="js-example">
+                        <h4>Functions</h4>
+                        <pre class="out">// Function declaration
+function add(a, b) { return a + b; }
+
+// Function expression
+var multiply = function(a, b) { return a * b; };
+
+// Arrow function (ES6)
+var divide = (a, b) => a / b;
+
+// Callback
+[1,2,3].forEach(function(n) {
+  console.log(n);
+});</pre>
+                        <button class="btn" data-jsrun="funcs">Run</button>
+                        <div class="js-output" id="js-out-funcs"></div>
+                    </div>
+
+                    <div class="js-example">
+                        <h4>Array Methods</h4>
+                        <pre class="out">var nums = [1, 2, 3, 4, 5];
+
+nums.map(n => n * 2)        // [2,4,6,8,10]
+nums.filter(n => n > 3)     // [4,5]
+nums.find(n => n === 3)     // 3
+nums.every(n => n > 0)      // true
+nums.some(n => n > 4)       // true
+nums.reduce((sum, n) => sum + n, 0) // 15
+nums.indexOf(3)             // 2
+nums.includes(3)            // true</pre>
+                        <button class="btn" data-jsrun="arrays">Run</button>
+                        <div class="js-output" id="js-out-arrays"></div>
+                    </div>
+
+                    <div class="js-example">
+                        <h4>String Methods</h4>
+                        <pre class="out">var str = "Hello, World!";
+
+str.length            // 13
+str.toUpperCase()     // "HELLO, WORLD!"
+str.toLowerCase()     // "hello, world!"
+str.indexOf("World")  // 7
+str.includes("Hello") // true
+str.split(", ")       // ["Hello", "World!"]
+str.slice(0, 5)       // "Hello"
+str.replace("World", "JS")  // "Hello, JS!"
+str.trim()            // removes whitespace</pre>
+                        <button class="btn" data-jsrun="strings">Run</button>
+                        <div class="js-output" id="js-out-strings"></div>
+                    </div>
+
+                    <div class="js-example">
+                        <h4>Comparison &amp; Logical Operators</h4>
+                        <pre class="out">// Loose equality (type coercion)
+"5" == 5      // true
+0 == false    // true
+null == undefined  // true
+
+// Strict equality (no coercion)
+"5" === 5     // false
+0 === false   // false
+
+// Logical operators
+true && false   // false
+true || false   // true
+!true           // false
+
+// Ternary operator
+var status = age >= 18 ? "adult" : "minor";</pre>
+                        <button class="btn" data-jsrun="compare">Run</button>
+                        <div class="js-output" id="js-out-compare"></div>
+                    </div>
+
+                    <div class="js-example">
+                        <h4>Objects</h4>
+                        <pre class="out">var user = {
+  name: "Alice",
+  age: 25,
+  greet: function() {
+    return "Hi, I'm " + this.name;
+  }
+};
+
+user.name           // "Alice"
+user["age"]         // 25
+user.greet()        // "Hi, I'm Alice"
+Object.keys(user)   // ["name","age","greet"]
+Object.values(user) // ["Alice", 25, fn]
+"name" in user      // true</pre>
+                        <button class="btn" data-jsrun="objects">Run</button>
+                        <div class="js-output" id="js-out-objects"></div>
+                    </div>
+
+                    <div class="js-example">
+                        <h4>JSON &amp; Fetch API</h4>
+                        <pre class="out">// Convert object to JSON string
+JSON.stringify({ name: "Alice", age: 25 })
+// '{"name":"Alice","age":25}'
+
+// Parse JSON string to object
+JSON.parse('{"name":"Alice"}')
+// { name: "Alice" }
+
+// Fetch API
+fetch("https://api.example.com/data")
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));</pre>
+                        <button class="btn" data-jsrun="json">Run</button>
+                        <div class="js-output" id="js-out-json"></div>
+                    </div>
+                </div>
+
+                <div class="concepts">
+                    <h3>Key Concepts</h3>
+                    <div class="card-grid">
+                        <div class="info-card">
+                            <h4>Scope &amp; Hoisting</h4>
+                            <p><code>var</code> is <strong>function-scoped</strong> and hoisted to the top of its function. <code>let</code> and <code>const</code> are <strong>block-scoped</strong> (inside <code>{}</code>) and are not accessible before their declaration (temporal dead zone).</p>
+                            <div class="tip-box"><strong>Best practice:</strong> Use <code>const</code> by default. Use <code>let</code> only when you need to reassign. Avoid <code>var</code> in modern code.</div>
+                        </div>
+                        <div class="info-card">
+                            <h4>Closures</h4>
+                            <p>A closure is a function that remembers the variables from its outer scope even after the outer function has returned. This is how callbacks and event handlers preserve state.</p>
+                            <pre class="out">function counter() {
+  var count = 0;
+  return function() {
+    count++;
+    return count;
+  };
+}
+var inc = counter();
+inc(); // 1
+inc(); // 2
+inc(); // 3</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>Asynchronous JavaScript</h4>
+                            <p>JavaScript is single-threaded. Async operations (network requests, timers) use callbacks, Promises, or async/await to run without blocking the main thread.</p>
+                            <pre class="out">// Promise chain
+fetch(url)
+  .then(r => r.json())
+  .then(data => use(data))
+  .catch(err => handle(err));
+
+// async/await (syntactic sugar)
+async function getData() {
+  try {
+    var r = await fetch(url);
+    var data = await r.json();
+    use(data);
+  } catch (err) {
+    handle(err);
+  }
+}</pre>
+                        </div>
+                        <div class="info-card">
+                            <h4>sessionStorage vs localStorage</h4>
+                            <table class="compare-table">
+                                <tr><th>Feature</th><th>sessionStorage</th><th>localStorage</th></tr>
+                                <tr><td>Lifetime</td><td>Until tab is closed</td><td>Persistent</td></tr>
+                                <tr><td>Scope</td><td>Per tab</td><td>Per origin</td></tr>
+                                <tr><td>Capacity</td><td>~5 MB</td><td>~5-10 MB</td></tr>
+                                <tr><td>Use case</td><td>Temp session data</td><td>User preferences</td></tr>
+                            </table>
+                            <pre class="out">sessionStorage.setItem("key", "value");
+sessionStorage.getItem("key"); // "value"
+
+localStorage.setItem("key", "value");
+localStorage.getItem("key");   // "value"</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+
+    <button class="chat-fab" id="chatFab">Ask about HTML/CSS/JS</button>
+
+    <div class="chat" id="chat">
+        <div class="chat-head">
+            <strong>Front-end assistant</strong>
+            <button id="chatClose" aria-label="Close">×</button>
+        </div>
+        <div class="chat-key">
+            <input type="password" id="apiKey" placeholder="Paste your Google Gemini API key">
+            <div class="ai-actions">
+                <button type="button" class="btn ai-help-btn" id="aiGuideBtn" aria-controls="aiGuide"
+                    aria-expanded="false">How to get an API key</button>
+                <a class="btn btn-solid ai-key-link" href="https://aistudio.google.com/api-keys" target="_blank"
+                    rel="noopener noreferrer">Open AI Studio</a>
+            </div>
+            <div class="ai-guide" id="aiGuide">
+                <ol>
+                    <li>Go to Google AI Studio API Keys.</li>
+                    <li>Sign in with your Google account and click Create API key.</li>
+                    <li>Create and copy the new key, paste it into the field above, then ask a question.</li>
+                </ol>
+                <p class="note">This demo has no backend, so the project never sends your key to a private server. The key
+                    is only stored in the browser's sessionStorage and is cleared when you close the tab. Requests go
+                    directly from the browser to the Google Gemini API.</p>
+            </div>
+            <p class="note">The API key is only stored temporarily in the current browser session.</p>
+        </div>
+        <div class="chat-log" id="chatLog">
+            <div class="msg sys">Only answers questions about HTML, CSS, JavaScript, and jQuery.</div>
+        </div>
+        <form class="chat-form" id="chatForm">
+            <input type="text" id="chatInput" placeholder="e.g. What's the difference between flex and grid?" autocomplete="off">
+            <button type="submit" class="btn btn-solid">Send</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./jQuery.js"></script>
+</body>
+
+</html>

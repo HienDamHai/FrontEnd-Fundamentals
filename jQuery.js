@@ -79,9 +79,6 @@ $(document).ready(function () {
   $("#m-flex").on("input change", "select, input", renderFx);
   renderFx();
 
-  /* ════════════════════════════════════════════════════════════════
-     02 · JQUERY SHOWCASE
-     ════════════════════════════════════════════════════════════════ */
   $("#jq-run").on("click", function () {
     var sel = $.trim($("#jq-sel").val());
     $("#jq-tree span").removeClass("hit");
@@ -159,9 +156,6 @@ $(document).ready(function () {
     log("Delegation captured: " + $(this).text());
   });
 
-  /* ════════════════════════════════════════════════════════════════
-     03 · CSS BOX MODEL
-     ════════════════════════════════════════════════════════════════ */
   function renderBm() {
     var m = +$("#bm-m").val(),
       b = +$("#bm-b").val(),
@@ -200,9 +194,6 @@ $(document).ready(function () {
   $("#m-box").on("input change", "input, select", renderBm);
   renderBm();
 
-  /* ════════════════════════════════════════════════════════════════
-     04 · RESPONSIVE DESIGN
-     ════════════════════════════════════════════════════════════════ */
   $("#m-resp")
     .on("click", "[data-vp]", function () {
       var w = $(this).data("vp");
@@ -227,9 +218,6 @@ $(document).ready(function () {
     .last()
     .trigger("click");
 
-  /* ════════════════════════════════════════════════════════════════
-     05 · VANILLA DOM
-     ════════════════════════════════════════════════════════════════ */
   var dmCount = 0;
   function dmShow(code) {
     document.getElementById("dm-code").textContent = code;
@@ -266,9 +254,6 @@ $(document).ready(function () {
     dmShow('stage.innerHTML = "";');
   });
 
-  /* ════════════════════════════════════════════════════════════════
-     06 · SEMANTIC HTML
-     ════════════════════════════════════════════════════════════════ */
   var tags = [
     { t: "header", d: "Introductory content for a page or section" },
     { t: "nav", d: "Group of navigation links" },
@@ -303,20 +288,13 @@ $(document).ready(function () {
   $("#sem-list").on("change", "input", renderSem);
   renderSem();
 
-  /* ════════════════════════════════════════════════════════════════
-     07 · CSS SELECTORS & SPECIFICITY
-     ════════════════════════════════════════════════════════════════ */
   function calcSpecificity(sel) {
     var a = 0, b = 0, c = 0;
-    // Remove :not() wrapper but count its contents
     var cleaned = sel.replace(/:not\(([^)]*)\)/g, " $1 ");
-    // Remove pseudo-elements (::before, ::after, etc.)
     cleaned = cleaned.replace(/::[a-z-]+/g, function () { c++; return ""; });
-    // Count IDs
     var ids = cleaned.match(/#[a-zA-Z_][\w-]*/g);
     if (ids) a += ids.length;
     cleaned = cleaned.replace(/#[a-zA-Z_][\w-]*/g, "");
-    // Count classes, attribute selectors, pseudo-classes
     var classes = cleaned.match(/\.[a-zA-Z_][\w-]*/g);
     if (classes) b += classes.length;
     var attrs = cleaned.match(/\[[^\]]+\]/g);
@@ -326,7 +304,6 @@ $(document).ready(function () {
     cleaned = cleaned.replace(/\.[a-zA-Z_][\w-]*/g, "");
     cleaned = cleaned.replace(/\[[^\]]+\]/g, "");
     cleaned = cleaned.replace(/:[a-zA-Z-]+(\([^)]*\))?/g, "");
-    // Count type selectors (element names)
     var types = cleaned.match(/[a-zA-Z][a-zA-Z0-9]*/g);
     if (types) c += types.length;
     return [a, b, c];
@@ -363,9 +340,6 @@ $(document).ready(function () {
     renderSpecificity(sel);
   });
 
-  /* ════════════════════════════════════════════════════════════════
-     08 · CSS TRANSITIONS & ANIMATIONS
-     ════════════════════════════════════════════════════════════════ */
   function renderAnim() {
     var prop = $("#anim-prop").val();
     var dur = (+$("#anim-dur").val() / 10).toFixed(1);
@@ -417,9 +391,6 @@ $(document).ready(function () {
   });
   renderAnim();
 
-  /* ════════════════════════════════════════════════════════════════
-     09 · JS FUNDAMENTALS
-     ════════════════════════════════════════════════════════════════ */
   var jsExamples = {
     vars: function () {
       var x = 1;
@@ -541,9 +512,6 @@ $(document).ready(function () {
     }
   });
 
-  /* ════════════════════════════════════════════════════════════════
-     AI CHATBOX — Gemini API Integration
-     ════════════════════════════════════════════════════════════════ */
   var KEY = "ffl_gemini_key";
   var saved = null;
   try {

@@ -11,58 +11,48 @@ The project also includes an AI chatbox powered by the Google Gemini API. The as
 ## My project screen capture
 ### Flexbox & Grid Playground
 
-```md
 ![Flexbox and Grid](./assets/screenshots/flex-grid.png)
-```
 
 ### jQuery Showcase
 
-```md
 ![jQuery Showcase](./assets/screenshots/jquery-showcase.png)
-```
+
 
 ### CSS Box Model
 
-```md
+
 ![CSS Box Model](./assets/screenshots/box-model.png)
-```
 
 ### Responsive Preview
 
-```md
 ![Responsive Preview](./assets/screenshots/responsive.png)
-```
+
 
 ### Native DOM & Semantic HTML
 
-```md
 ![DOM and Semantic HTML](./assets/screenshots/dom-semantic.png)
 ![DOM and Semantic HTML](./assets/screenshots/dom-semantic2.png)
-```
+
 
 ### CSS Selectors & Specificity
 
-```md
 ![CSS Selectors](./assets/screenshots/css-selectors.png)
-```
+
 
 ### CSS Transitions & Animations
 
-```md
 ![CSS Animations](./assets/screenshots/css-animations.png)
-```
+
 
 ### JavaScript Fundamentals
 
-```md
 ![JS Fundamentals](./assets/screenshots/js-fundamentals.png)
-```
+
 
 ### AI Chatbox
 
-```md
+
 ![AI Chatbox](./assets/screenshots/ai-chat.png)
-```
 
 ## Tech Stack
 
